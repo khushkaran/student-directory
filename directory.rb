@@ -53,6 +53,12 @@ def print_confirmation(students)
 		name = gets.chomp
 		puts "Please re-enter the student's cohort"
 		cohort = gets.chomp
+		while name.empty?
+			puts "Please re-enter the student's name"
+			name = gets.chomp
+			puts "Please re-enter the student's cohort"
+			cohort = gets.chomp
+		end
 		students << {:name => name, :cohort => cohort}
 		print(students)
 		puts "Please check that all is correct, if it is press enter, else press any key then enter"
