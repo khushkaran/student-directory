@@ -31,8 +31,8 @@ def print_header
 end
 
 def list(students)
-	students.each do |student|
-		print "#{student[:name]} (#{student[:cohort]} Cohort)\n"
+	students.each_with_index do |student, i|
+		print "#{i+1}. #{student[:name]} (#{student[:cohort]} Cohort)\n"
 	end
 end
 
