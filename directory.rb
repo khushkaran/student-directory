@@ -1,48 +1,50 @@
 # All the students within an array
+textWidth = 100
+
 students = [
-	{:name => "Mario Gintili", 		:cohort => :February},
-	{:name => "Mikhail Dubov", 		:cohort => :February},
-	{:name => "Karolis Noreika", 	:cohort => :February},
-	{:name => "Michael Sidon", 		:cohort => :February},
-	{:name => "Charles De Barros",	:cohort => :February},
-	{:name => "Ruslan Vikhor", 		:cohort => :February},
-	{:name => "Toby Retallick", 	:cohort => :February},
-	{:name => "Mark Mekhaiel", 		:cohort => :February},
-	{:name => "Sarah Young", 		:cohort => :February},
-	{:name => "Hannah Wight", 		:cohort => :February},
-	{:name => "Khushkaran Singh", 	:cohort => :February},
-	{:name => "Rick brunstedt", 	:cohort => :February},
-	{:name => "Manjit Singh", 		:cohort => :February},
-	{:name => "Alex Gaudiosi", 		:cohort => :February},
-	{:name => "Ross Hepburn", 		:cohort => :February},
-	{:name => "Natascia Marchese", 	:cohort => :February},
-	{:name => "Tiffanie Chia", 		:cohort => :February},
-	{:name => "Matthew Thomas", 	:cohort => :February},
-	{:name => "Freddy McGroarty", 	:cohort => :February},
-	{:name => "Tyler Rollins", 		:cohort => :February},
-	{:name => "Richard Curteis", 	:cohort => :February},
-	{:name => "Anna Yanova", 		:cohort => :February},
-	{:name => "Andrew Cumine", 		:cohort => :February}
+	{:name => "Mario Gintili", 		:cohort => :February, :hobby => "Football",		:cob => "UK"},
+	{:name => "Mikhail Dubov", 		:cohort => :February, :hobby => "Formula 1",	:cob => "UK"},
+	{:name => "Karolis Noreika", 	:cohort => :February, :hobby => "Coding",		:cob => "UK"},
+	{:name => "Michael Sidon", 		:cohort => :February, :hobby => "Football",		:cob => "UK"},
+	{:name => "Charles De Barros",	:cohort => :February, :hobby => "Football",		:cob => "Belgium"},
+	{:name => "Ruslan Vikhor", 		:cohort => :February, :hobby => "Running",		:cob => "UK"},
+	{:name => "Toby Retallick", 	:cohort => :February, :hobby => "Football",		:cob => "New Zealand"},
+	{:name => "Mark Mekhaiel", 		:cohort => :February, :hobby => "Football",		:cob => "UK"},
+	{:name => "Sarah Young", 		:cohort => :February, :hobby => "Running",		:cob => "USA"},
+	{:name => "Hannah Wight", 		:cohort => :February, :hobby => "Football",		:cob => "UK"},
+	{:name => "Khushkaran Singh", 	:cohort => :February, :hobby => "Formula 1",	:cob => "UK"},
+	{:name => "Rick brunstedt", 	:cohort => :February, :hobby => "Football",		:cob => "UK"},
+	{:name => "Manjit Singh", 		:cohort => :February, :hobby => "Cricket",		:cob => "UK"},
+	{:name => "Alex Gaudiosi", 		:cohort => :February, :hobby => "Football",		:cob => "Germany"},
+	{:name => "Ross Hepburn", 		:cohort => :February, :hobby => "Football",		:cob => "UK"},
+	{:name => "Natascia Marchese", 	:cohort => :February, :hobby => "Formula 1",	:cob => "UK"},
+	{:name => "Tiffanie Chia", 		:cohort => :February, :hobby => "Football",		:cob => "Singapore"},
+	{:name => "Matthew Thomas", 	:cohort => :February, :hobby => "Football",		:cob => "USA"},
+	{:name => "Freddy McGroarty", 	:cohort => :February, :hobby => "Rugby",		:cob => "UK"},
+	{:name => "Tyler Rollins", 		:cohort => :February, :hobby => "Football",		:cob => "UK"},
+	{:name => "Richard Curteis", 	:cohort => :February, :hobby => "Walking",		:cob => "UK"},
+	{:name => "Anna Yanova", 		:cohort => :February, :hobby => "Lifting",		:cob => "UK"},
+	{:name => "Andrew Cumine", 		:cohort => :February, :hobby => "Football",		:cob => "UK"}
 ]
 
-def print_header
-	print "The students of my cohort at Makers Academy\n"
-	print "-------------\n"
+def print_header(textWidth)
+	puts "The students of my cohort at Makers Academy".center(textWidth)
+	puts "-------------".center(textWidth)
 end
 
-def list(students)
+def list(students, textWidth)
 	i = 0
 	while i < students.length
-		print "#{i+1}. #{students[i][:name]} (#{students[i][:cohort]} Cohort)\n"
+		puts "#{i+1}. #{students[i][:name]} (#{students[i][:cohort]} Cohort) || Hobby: #{students[i][:hobby]} || Country of Birth: #{students[i][:cob]}".center(textWidth)
 		i += 1
 	end
 end
 
-def print_footer(names)
-	print "Overall, we have #{names.length} great students!\n"
+def print_footer(names, textWidth)
+	puts "Overall, we have #{names.length} great students!\n".center(textWidth)
 end
 
 # call methods
-print_header
-list(students)
-print_footer(students)
+print_header(textWidth)
+list(students, textWidth)
+print_footer(students, textWidth)
