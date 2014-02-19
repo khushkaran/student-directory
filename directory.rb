@@ -1,3 +1,4 @@
+student_count = 9
 # print title and then list of students
 puts "The students of my cohort at Makers Academy"
 puts "-------------"
@@ -24,8 +25,5 @@ puts "Tyler Rollins"
 puts "Richard Curteis"
 puts "Anna Yanova"
 puts "Andrew Cumine"
-# print the total number of students
-print "Overall, we have "
-# print doesn't add new line characters
-print 23
-puts " great students"
+# puts the total number of students
+puts "Overall, we have #{student_count} great students"
