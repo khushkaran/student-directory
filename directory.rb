@@ -27,10 +27,10 @@ students = [
 
 def print_header
 	print "The students of my cohort at Makers Academy\n"
-	"-------------"
+	print "-------------\n"
 end
 
-def print(students)
+def list(students)
 	students.each do |student|
 		print "#{student[:name]} (#{student[:cohort]} Cohort)\n"
 	end
@@ -42,5 +42,5 @@ end
 
 # call methods
 print_header
-print(students)
+list(students)
 print_footer(students)
