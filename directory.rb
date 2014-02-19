@@ -26,18 +26,18 @@ students = [
 ]
 
 def print_header
-	puts "The students of my cohort at Makers Academy"
+	print "The students of my cohort at Makers Academy\n"
 	"-------------"
 end
 
 def print(students)
 	students.each do |student|
-		puts "#{student[:name]} (#{student[:cohort]} Cohort)"
+		print "#{student[:name]} (#{student[:cohort]} Cohort)\n"
 	end
 end
 
 def print_footer(names)
-	puts "Overall, we have #{names.length} great students!"
+	print "Overall, we have #{names.length} great students!\n"
 end
 
 # call methods
