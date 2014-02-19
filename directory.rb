@@ -1,32 +1,4 @@
-# All the students within an array
-=begin
-	students = [
-	{:name => "Mario Gintili", 		:cohort => :February},
-	{:name => "Mikhail Dubov", 		:cohort => :February},
-	{:name => "Karolis Noreika", 	:cohort => :February},
-	{:name => "Michael Sidon", 		:cohort => :February},
-	{:name => "Charles De Barros",	:cohort => :February},
-	{:name => "Ruslan Vikhor", 		:cohort => :February},
-	{:name => "Toby Retallick", 	:cohort => :February},
-	{:name => "Mark Mekhaiel", 		:cohort => :February},
-	{:name => "Sarah Young", 		:cohort => :February},
-	{:name => "Hannah Wight", 		:cohort => :February},
-	{:name => "Khushkaran Singh", 	:cohort => :February},
-	{:name => "Rick brunstedt", 	:cohort => :February},
-	{:name => "Manjit Singh", 		:cohort => :February},
-	{:name => "Alex Gaudiosi", 		:cohort => :February},
-	{:name => "Ross Hepburn", 		:cohort => :February},
-	{:name => "Natascia Marchese", 	:cohort => :February},
-	{:name => "Tiffanie Chia", 		:cohort => :February},
-	{:name => "Matthew Thomas", 	:cohort => :February},
-	{:name => "Freddy McGroarty", 	:cohort => :February},
-	{:name => "Tyler Rollins", 		:cohort => :February},
-	{:name => "Richard Curteis", 	:cohort => :February},
-	{:name => "Anna Yanova", 		:cohort => :February},
-	{:name => "Andrew Cumine", 		:cohort => :February}
-]
-=end
-
+# Input students method
 def input_students
 	puts "Please enter the names of the students"
 	puts "To finish just hit return twice"
@@ -34,13 +6,27 @@ def input_students
 	students = []
 	# Get the first name
 	name = gets.chomp
+	# Get the cohort
+	if !name.empty?
+		puts "Please enter your Cohort"
+		cohort = gets.chomp
+	end
 	# While the name is not empty, repeat this code
 	while !name.empty? do
 		#add the student hass to the array
-		students << {:name => name, :cohort => :February}
+		if cohort.empty?
+			cohort = "Unknown"
+		end
+		students << {:name => name.to_sym, :cohort => cohort.to_sym}
 		puts "Now we have #{students.length} students!"
 		#get another name from the user
+		puts "Another name please"
 		name = gets.chomp
+		# If name is empty, don't ask for cohort!
+		if !name.empty?
+			puts "And Cohort?"
+			cohort = gets.chomp
+		end
 	end
 	#return the array of the sutdents
 	students
@@ -52,8 +38,25 @@ def print_header
 end
 
 def print(students)
-	students.each do |student|
-		puts "#{student[:name]} (#{student[:cohort]} Cohort)"
+	students.each_with_index do |student, i|
+		puts "#{i+1}. #{student[:name]} (#{student[:cohort]} Cohort)"
+	end
+end
+
+def print_confirmation(students)
+	puts "Please check that all is correct, if it is press enter, else enter the number that is incorrect"
+	entry = gets.chomp
+	until entry == ""
+		index_to_delete = entry.to_i - 1
+		students.delete_at(index_to_delete)
+		puts "Please re-enter the student's name"
+		name = gets.chomp
+		puts "Please re-enter the student's cohort"
+		cohort = gets.chomp
+		students << {:name => name, :cohort => cohort}
+		print(students)
+		puts "Please check that all is correct, if it is press enter, else press any key then enter"
+		entry = gets.chomp
 	end
 end
 
@@ -65,4 +68,5 @@ end
 students = input_students
 print_header
 print(students)
+print_confirmation(students)
 print_footer(students)
