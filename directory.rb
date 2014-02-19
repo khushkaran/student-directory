@@ -31,12 +31,10 @@ def print_header
 end
 
 def list(students)
-	students.each_with_index do |student, i|
-		if student[:name].chr.downcase == "a"
-			if student[:name].length < 12
-				print "#{i+1}. #{student[:name]} (#{student[:cohort]} Cohort)\n"
-			end
-		end
+	i = 0
+	while i < students.length
+		print "#{i+1}. #{students[i][:name]} (#{students[i][:cohort]} Cohort)\n"
+		i += 1
 	end
 end
 
