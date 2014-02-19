@@ -33,7 +33,9 @@ end
 def list(students)
 	students.each_with_index do |student, i|
 		if student[:name].chr.downcase == "a"
-			print "#{i+1}. #{student[:name]} (#{student[:cohort]} Cohort)\n"
+			if student[:name].length < 12
+				print "#{i+1}. #{student[:name]} (#{student[:cohort]} Cohort)\n"
+			end
 		end
 	end
 end
