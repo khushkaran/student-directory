@@ -1,3 +1,8 @@
+# Chomp alternative method
+def chomp_alt(string)
+	string.delete "\n"
+end
+
 # Input students method
 def input_students
 	puts "Please enter the names of the students"
@@ -5,11 +10,11 @@ def input_students
 	# Create an empty array
 	students = []
 	# Get the first name
-	name = gets.delete "\n"
+	name = chomp_alt(gets)
 	# Get the cohort
 	if !name.empty?
 		puts "Please enter your Cohort"
-		cohort = gets.delete "\n"
+		cohort = chomp_alt(gets)
 	end
 	# While the name is not empty, repeat this code
 	while !name.empty? do
@@ -25,14 +30,14 @@ def input_students
     end
 		#get another name from the user
 		puts "Another name please"
-		name = gets.delete "\n"
+		name = chomp_alt(gets)
 		# If name is empty, don't ask for cohort!
 		if !name.empty?
 			puts "And Cohort?"
-			cohort = gets.delete "\n"
+			cohort = chomp_alt(gets)
 		end
 	end
-	#return the array of the sutdents
+	#return the array of the students
 	students
 end
 
@@ -49,24 +54,24 @@ end
 
 def print_confirmation(students)
 	puts "Please check that all is correct, if it is press enter, else enter the number that is incorrect"
-	entry = gets.delete "\n"
+	entry = chomp_alt(gets)
 	until entry == ""
 		index_to_delete = entry.to_i - 1
 		students.delete_at(index_to_delete)
 		puts "Please re-enter the student's name"
-		name = gets.delete "\n"
+		name = chomp_alt(gets)
 		puts "Please re-enter the student's cohort"
-		cohort = gets.delete "\n"
+		cohort = chomp_alt(gets)
 		while name.empty?
 			puts "Please re-enter the student's name"
-			name = gets.delete "\n"
+			name = chomp_alt(gets)
 			puts "Please re-enter the student's cohort"
-			cohort = gets.delete "\n"
+			cohort = chomp_alt(gets)
 		end
 		students << {:name => name, :cohort => cohort}
 		print(students)
 		puts "Please check that all is correct, if it is press enter, else press any key then enter"
-		entry = gets.delete "\n"
+		entry = chomp_alt(gets)
 	end
 end
 
