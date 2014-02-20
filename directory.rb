@@ -38,9 +38,22 @@ def print_header
 end
 
 def print(students)
-	students.each_with_index do |student, i|
-		puts "#{i+1}. #{student[:name]} (#{student[:cohort]} Cohort)"
+	cohorts_array = []
+	students.each do |student|
+		cohorts_array << student[:cohort]
 	end
+	cohorts_array = cohorts_array.uniq
+
+	cohorts_array.each do |cohort|
+    puts cohort
+		students.each_with_index do |student, i|
+      if student[:cohort] == cohort
+        puts "#{i+1}. #{student[:name]}"
+      end
+      #puts "#{i+1}. #{student[:name]} (#{student[:cohort]} Cohort)"
+    end
+	end
+
 end
 
 def print_confirmation(students)
