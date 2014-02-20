@@ -1,6 +1,4 @@
 # All the students within an array
-textWidth = 100
-
 students = [
 	{:name => "Mario Gintili", 		:cohort => :February, :hobby => "Football",		:cob => "UK"},
 	{:name => "Mikhail Dubov", 		:cohort => :February, :hobby => "Formula 1",	:cob => "UK"},
@@ -27,24 +25,24 @@ students = [
 	{:name => "Andrew Cumine", 		:cohort => :February, :hobby => "Football",		:cob => "UK"}
 ]
 
-def print_header(textWidth)
-	puts "The students of my cohort at Makers Academy".center(textWidth)
-	puts "-------------".center(textWidth)
+def print_header
+	puts "The students of my cohort at Makers Academy"
+	puts "-------------"
 end
 
-def list(students, textWidth)
+def list(students)
 	i = 0
 	while i < students.length
-		puts "#{i+1}. #{students[i][:name]} (#{students[i][:cohort]} Cohort) || Hobby: #{students[i][:hobby]} || Country of Birth: #{students[i][:cob]}".center(textWidth)
+		puts "#{i+1}. #{students[i][:name]} (#{students[i][:cohort]} Cohort) || Hobby: #{students[i][:hobby]} || Country of Birth: #{students[i][:cob]}"
 		i += 1
 	end
 end
 
-def print_footer(names, textWidth)
-	puts "Overall, we have #{names.length} great students!\n".center(textWidth)
+def print_footer(names)
+	puts "Overall, we have #{names.length} great students!\n"
 end
 
 # call methods
-print_header(textWidth)
-list(students, textWidth)
-print_footer(students, textWidth)
+print_header
+list(students)
+print_footer(students)
