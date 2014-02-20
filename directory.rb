@@ -18,7 +18,11 @@ def input_students
 			cohort = "Unknown"
 		end
 		students << {:name => name.to_sym, :cohort => cohort.to_sym}
-		puts "Now we have #{students.length} students!"
+    if students.length == 1
+      puts "Now we have #{students.length} student!"
+    else
+      puts "Now we have #{students.length} students!"
+    end
 		#get another name from the user
 		puts "Another name please"
 		name = gets.chomp
@@ -67,7 +71,11 @@ def print_confirmation(students)
 end
 
 def print_footer(names)
-	puts "Overall, we have #{names.length} great students!"
+  if names.length == 1
+    puts "Overall, we have #{names.length} great student!"
+  else
+    puts "Overall, we have #{names.length} great students!"
+  end
 end
 
 # call methods
