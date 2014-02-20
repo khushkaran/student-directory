@@ -5,11 +5,11 @@ def input_students
 	# Create an empty array
 	students = []
 	# Get the first name
-	name = gets.chomp
+	name = gets.delete "\n"
 	# Get the cohort
 	if !name.empty?
 		puts "Please enter your Cohort"
-		cohort = gets.chomp
+		cohort = gets.delete "\n"
 	end
 	# While the name is not empty, repeat this code
 	while !name.empty? do
@@ -25,11 +25,11 @@ def input_students
     end
 		#get another name from the user
 		puts "Another name please"
-		name = gets.chomp
+		name = gets.delete "\n"
 		# If name is empty, don't ask for cohort!
 		if !name.empty?
 			puts "And Cohort?"
-			cohort = gets.chomp
+			cohort = gets.delete "\n"
 		end
 	end
 	#return the array of the sutdents
@@ -49,24 +49,24 @@ end
 
 def print_confirmation(students)
 	puts "Please check that all is correct, if it is press enter, else enter the number that is incorrect"
-	entry = gets.chomp
+	entry = gets.delete "\n"
 	until entry == ""
 		index_to_delete = entry.to_i - 1
 		students.delete_at(index_to_delete)
 		puts "Please re-enter the student's name"
-		name = gets.chomp
+		name = gets.delete "\n"
 		puts "Please re-enter the student's cohort"
-		cohort = gets.chomp
+		cohort = gets.delete "\n"
 		while name.empty?
 			puts "Please re-enter the student's name"
-			name = gets.chomp
+			name = gets.delete "\n"
 			puts "Please re-enter the student's cohort"
-			cohort = gets.chomp
+			cohort = gets.delete "\n"
 		end
 		students << {:name => name, :cohort => cohort}
 		print(students)
 		puts "Please check that all is correct, if it is press enter, else press any key then enter"
-		entry = gets.chomp
+		entry = gets.delete "\n"
 	end
 end
 
