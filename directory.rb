@@ -1,4 +1,4 @@
-text_width = 50
+text_width = 45
 
 def print_s(length)
 	length == 1 ? "" : "s"
@@ -32,13 +32,25 @@ end
 
 def print_header(students,text_width)
 	puts "The student#{print_s(students.length)} of my cohort at Makers Academy".center(text_width)
-	puts "-------------".center(text_width)
 end
 
 def list(students, text_width)
-	students.each_with_index do |student, i|
-		puts "#{i+1}. #{student[:name]} (#{student[:cohort]} Cohort)".center(text_width)
-	end
+	cohorts = students.map {|student| student[:cohort]}.uniq
+	cohorts.each{|cohort|
+		puts "-------------".center(text_width)
+		puts cohort.center(text_width)
+		puts "-------------".center(text_width)
+		i = 1
+		students.select{|student| 
+			if student[:cohort] == cohort
+				puts "#{i}. #{student[:name]}".center(text_width)
+				i+=1
+			end
+		}
+	}
+	# students.each_with_index do |student, i|
+	# 	puts "#{i+1}. #{student[:name]} (#{student[:cohort]} Cohort)".center(text_width)
+	# end
 end
 
 def print_footer(names, text_width)
