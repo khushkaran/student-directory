@@ -1,68 +1,52 @@
-# All the students within an array
-=begin
-	students = [
-	{:name => "Mario Gintili", 		:cohort => :February},
-	{:name => "Mikhail Dubov", 		:cohort => :February},
-	{:name => "Karolis Noreika", 	:cohort => :February},
-	{:name => "Michael Sidon", 		:cohort => :February},
-	{:name => "Charles De Barros",	:cohort => :February},
-	{:name => "Ruslan Vikhor", 		:cohort => :February},
-	{:name => "Toby Retallick", 	:cohort => :February},
-	{:name => "Mark Mekhaiel", 		:cohort => :February},
-	{:name => "Sarah Young", 		:cohort => :February},
-	{:name => "Hannah Wight", 		:cohort => :February},
-	{:name => "Khushkaran Singh", 	:cohort => :February},
-	{:name => "Rick brunstedt", 	:cohort => :February},
-	{:name => "Manjit Singh", 		:cohort => :February},
-	{:name => "Alex Gaudiosi", 		:cohort => :February},
-	{:name => "Ross Hepburn", 		:cohort => :February},
-	{:name => "Natascia Marchese", 	:cohort => :February},
-	{:name => "Tiffanie Chia", 		:cohort => :February},
-	{:name => "Matthew Thomas", 	:cohort => :February},
-	{:name => "Freddy McGroarty", 	:cohort => :February},
-	{:name => "Tyler Rollins", 		:cohort => :February},
-	{:name => "Richard Curteis", 	:cohort => :February},
-	{:name => "Anna Yanova", 		:cohort => :February},
-	{:name => "Andrew Cumine", 		:cohort => :February}
-]
-=end
+text_width = 50
+
+def print_s(length)
+	length == 1 ? "" : "s"
+end
 
 def input_students
-	puts "Please enter the names of the students"
-	puts "To finish just hit return twice"
-	# Create an empty array
-	students = []
+	cohort_entry_string = "Please enter the cohort"
+	puts "Please enter a name"
+	# Create an empty array for students and cohorts
+	students, cohorts = [], []
 	# Get the first name
 	name = gets.chomp
 	# While the name is not empty, repeat this code
 	while !name.empty? do
-		#add the student hass to the array
-		students << {:name => name, :cohort => :February}
-		puts "Now we have #{students.length} students!"
-		#get another name from the user
+		# Get the cohort
+		puts cohort_entry_string
+		cohort = gets.chomp
+		# Add the student name & cohort to the array
+		students << {:name => name, :cohort => cohort = cohort ||= "Unknown"}
+		# Get another email from the user
+		puts "We currently have #{students.length} student#{print_s(students.length)}, please enter another or press enter to quit!"
 		name = gets.chomp
+		if !name.empty?
+			puts cohort_entry_string
+			cohort = gets.chomp
+		end
 	end
 	#return the array of the sutdents
 	students
 end
 
-def print_header
-	puts "The students of my cohort at Makers Academy"
-	"-------------"
+def print_header(students,text_width)
+	puts "The student#{print_s(students.length)} of my cohort at Makers Academy".center(text_width)
+	puts "-------------".center(text_width)
 end
 
-def print(students)
-	students.each do |student|
-		puts "#{student[:name]} (#{student[:cohort]} Cohort)"
+def list(students, text_width)
+	students.each_with_index do |student, i|
+		puts "#{i+1}. #{student[:name]} (#{student[:cohort]} Cohort)".center(text_width)
 	end
 end
 
-def print_footer(names)
-	puts "Overall, we have #{names.length} great students!"
+def print_footer(names, text_width)
+	puts "Overall, we have #{names.length} great student#{print_s(names.length)}!".center(text_width)
 end
 
 # call methods
 students = input_students
-print_header
-print(students)
-print_footer(students)
+print_header(students, text_width)
+list(students, text_width)
+print_footer(students, text_width)
