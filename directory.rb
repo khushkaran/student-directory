@@ -21,10 +21,6 @@ def input_students
 		# Get another email from the user
 		puts "We currently have #{students.length} student#{print_s(students.length)}, please enter another or press enter to quit!"
 		name = gets.chomp
-		if !name.empty?
-			puts cohort_entry_string
-			cohort = gets.chomp
-		end
 	end
 	#return the array of the sutdents
 	students
