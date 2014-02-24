@@ -31,7 +31,7 @@ def input_students
 end
 
 def print_header(students,text_width)
-	puts "The student#{print_s(students.length)} of my cohort at Makers Academy".center(text_width)
+	puts "The student#{print_s(students.length)} of some cohorts at Makers Academy".center(text_width)
 end
 
 def list(students, text_width)
@@ -48,9 +48,6 @@ def list(students, text_width)
 			end
 		}
 	}
-	# students.each_with_index do |student, i|
-	# 	puts "#{i+1}. #{student[:name]} (#{student[:cohort]} Cohort)".center(text_width)
-	# end
 end
 
 def print_footer(names, text_width)
