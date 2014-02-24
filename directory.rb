@@ -4,10 +4,6 @@ def print_s(length)
 	length == 1 ? "" : "s"
 end
 
-def cohort_entered(cohort)
-	cohort == "" ? "Unknown" : cohort
-end
-
 def input_students
 	cohort_entry_string = "Please enter the cohort"
 	puts "Please enter a name"
@@ -20,8 +16,9 @@ def input_students
 		# Get the cohort
 		puts cohort_entry_string
 		cohort = gets.chomp
+		cohort = "Unknown" if cohort.empty?
 		# Add the student name & cohort to the array
-		students << {:name => name, :cohort => cohort_entered(cohort)}
+		students << {:name => name, :cohort => cohort}
 		# Get another email from the user
 		puts "We currently have #{students.length} student#{print_s(students.length)}, please enter another or press enter to quit!"
 		name = gets.chomp
