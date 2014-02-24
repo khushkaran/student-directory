@@ -1,4 +1,25 @@
-text_width = 45
+def interactive_menu
+	students = []
+	text_width = 45
+	loop do
+		puts "1. Input the students"
+		puts "2. Show the students"
+		puts "9. Exit"
+		selection = gets.chomp
+		case selection
+		when "1"
+			students = input_students
+		when "2"
+			print_header(students, text_width)
+			list(students, text_width)
+			print_footer(students, text_width)
+		when "9"
+			exit # Exit the program - causes it to terminate
+		else
+			puts "Incorrect selection, please try again!"
+		end
+	end
+end
 
 def print_s(length)
 	length == 1 ? "" : "s"
@@ -52,7 +73,8 @@ def print_footer(names, text_width)
 end
 
 # call methods
-students = input_students
-print_header(students, text_width)
-list(students, text_width)
-print_footer(students, text_width)
+# students = input_students
+# print_header(students, text_width)
+# list(students, text_width)
+# print_footer(students, text_width)
+interactive_menu
