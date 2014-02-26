@@ -1,33 +1,23 @@
+require 'csv'
+
 @students, @cohorts = [], []
 @text_width = 45
 
 # Saving/Writing Methods
 def save_students(filename = "students.csv")
-	File.open(filename, "w") do |file|
-		write_to_file(file)
-	end
-end
-
-def write_to_file(file)
-	@students.each do |student|
-		student_data = [student[:name], student[:cohort]]
-		csv_line = student_data.join(",")
-		file.puts csv_line
+	CSV.open(filename,"wb") do |csv|
+		@students.each do |student|
+			csv << [student[:name], student[:cohort]]
+		end
 	end
 end
 
 # Loading/Reading Methods
 def load_students(filename = "students.csv")
-	File.open(filename, "r") do |file|
-		read_from_file(file)
-	end
-end
-
-def read_from_file(file)
-	file.readlines.each do |line|
-		name, cohort = line.chomp.split(',')
-		add_student(name,cohort)
-	end
+	keys = [:name,:cohort]
+	CSV.read(filename).map {|row| 
+		@students << Hash[keys.zip(row)]
+	}
 end
 
 def try_load_students
