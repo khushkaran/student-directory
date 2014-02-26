@@ -3,9 +3,9 @@
 
 # Saving/Writing Methods
 def save_students(filename = "students.csv")
-	file = File.open(filename, "w")
-	write_to_file(file)
-	file.close
+	File.open(filename, "w") do |file|
+		write_to_file(file)
+	end
 end
 
 def write_to_file(file)
@@ -17,17 +17,17 @@ def write_to_file(file)
 end
 
 # Loading/Reading Methods
-def read_from_file(file)
-	file.readlines.each do |line|
-		name, cohort = line.chomp.split(',')
-		@students << {:name => name, :cohort => cohort.to_sym}
+def load_students(filename = "students.csv")
+	File.open(filename, "r") do |file|
+		read_from_file(file)
 	end
 end
 
-def load_students(filename = "students.csv")
-	file = File.open(filename, "r")
-	read_from_file(file)
-	file.close
+def read_from_file(file)
+	file.readlines.each do |line|
+		name, cohort = line.chomp.split(',')
+		add_student(name,cohort)
+	end
 end
 
 def try_load_students
@@ -81,6 +81,10 @@ def print_s(length)
 	length == 1 ? "" : "s"
 end
 
+def add_student(name, cohort)
+	@students << {:name => name, :cohort => cohort.to_sym}
+end
+
 def input_students
 	puts "Please enter a name"
 	name = STDIN.gets.chomp
@@ -90,7 +94,7 @@ def input_students
 		puts "Please enter the cohort"
 		cohort = STDIN.gets.chomp
 		cohort = "Unknown" if cohort.empty?
-		@students << {:name => name, :cohort => cohort.to_sym}
+		add_student(name,cohort)
 		puts "We currently have #{@students.length} student#{print_s(@students.length)}, please enter another or press enter to quit!"
 		name = STDIN.gets.chomp
 	end
