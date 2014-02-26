@@ -1,6 +1,7 @@
 @students = []
 @cohorts = []
 @text_width = 45
+@filename = "students.csv"
 
 def write_to_file(file)
 	@students.each do |student|
@@ -12,13 +13,12 @@ end
 
 def save_students
 	# Open file for writing
-	file = File.open("students.csv", "w")
-	# iterate over the array of students
+	file = File.open(@filename, "w")
 	write_to_file(file)
 	file.close
 end
 
-def read_file(file)
+def read_from_file(file)
 	file.readlines.each do |line|
 		name, cohort = line.chomp.split(',')
 		@students << {:name => name, :cohort => cohort.to_sym}
@@ -27,9 +27,8 @@ end
 
 def load_students
 	# Open file for reading
-	file = File.open("students.csv", "r")
-	# Iterate over the lines in the file
-	read_file(file)
+	file = File.open(@filename, "r")
+	read_from_file(file)
 	file.close
 end
 
