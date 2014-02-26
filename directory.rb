@@ -2,15 +2,34 @@
 @cohorts = []
 @text_width = 45
 
-def save_students
-	# Open file for writing
-	file = File.open("students.csv", "w")
-	#iterate over the array of students
+def write_to_file(file)
 	@students.each do |student|
 		student_data = [student[:name], student[:cohort]]
 		csv_line = student_data.join(",")
 		file.puts csv_line
 	end
+end
+
+def save_students
+	# Open file for writing
+	file = File.open("students.csv", "w")
+	# iterate over the array of students
+	write_to_file(file)
+	file.close
+end
+
+def read_file(file)
+	file.readlines.each do |line|
+		name, cohort = line.chomp.split(',')
+		@students << {:name => name, :cohort => cohort.to_sym}
+	end
+end
+
+def load_students
+	# Open file for reading
+	file = File.open("students.csv", "r")
+	# Iterate over the lines in the file
+	read_file(file)
 	file.close
 end
 
@@ -18,6 +37,7 @@ def print_menu
 	puts "1. Input the students"
 	puts "2. Show the students"
 	puts "3. Save the list to students.csv"
+	puts "4. Load the list from students.csv"
 	puts "9. Exit"
 end
 
@@ -35,6 +55,8 @@ def process(selection)
 			show_students
 		when "3"
 			save_students
+		when "4"
+			load_students
 		when "9"
 			exit # Exit the program - causes it to terminate
 		else
@@ -67,7 +89,7 @@ def input_students
 		cohort = gets.chomp
 		cohort = "Unknown" if cohort.empty?
 		# Add the student name & cohort to the array
-		@students << {:name => name, :cohort => cohort}
+		@students << {:name => name, :cohort => cohort.to_sym}
 		# Get another email from the user
 		puts "We currently have #{@students.length} student#{print_s(@students.length)}, please enter another or press enter to quit!"
 		name = gets.chomp
@@ -84,7 +106,7 @@ def print_student_list
 	@cohorts = @students.map {|student| student[:cohort]}.uniq
 	@cohorts.each{|cohort|
 		puts "-------------".center(@text_width)
-		puts cohort.center(@text_width)
+		puts cohort.to_s.center(@text_width)
 		puts "-------------".center(@text_width)
 		i = 1
 		@students.select{|student| 
