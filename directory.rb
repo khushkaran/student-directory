@@ -4,6 +4,30 @@ require 'csv'
 @text_width = 45
 
 # Saving/Writing Methods
+def ask_for_filename(command)
+	puts "Please enter a filename:"
+	filename = STDIN.gets.chomp
+	case command
+	when "Saving"
+		if filename.empty?
+			puts "No filename given, #{command} to default students.csv"
+			filename = "students.csv" 
+		end
+		save_students(filename)
+	when "Loading"
+		if !File.exists?(filename)
+			if File.exists?("students.csv")
+				puts "File: #{filename} doesn't exist, #{command} default students.csv"
+				filename = "students.csv" 
+			else
+				puts "File doesn't exist"
+				return
+			end
+		end
+		load_students(filename)
+	end
+end
+
 def save_students(filename = "students.csv")
 	CSV.open(filename,"wb") do |csv|
 		@students.each do |student|
@@ -14,6 +38,7 @@ end
 
 # Loading/Reading Methods
 def load_students(filename = "students.csv")
+	@students = []
 	keys = [:name,:cohort]
 	CSV.read(filename).map {|row| 
 		@students << Hash[keys.zip(row)]
@@ -44,8 +69,8 @@ end
 def print_menu
 	puts "1. Input the students"
 	puts "2. Show the students"
-	puts "3. Save the list to students.csv"
-	puts "4. Load the list from students.csv"
+	puts "3. Save the list"
+	puts "4. Load the list"
 	puts "9. Exit"
 end
 
@@ -56,9 +81,9 @@ def process(selection)
 		when "2"
 			show_students
 		when "3"
-			save_students
+			ask_for_filename("Saving")
 		when "4"
-			load_students
+			ask_for_filename("Loading")
 		when "9"
 			exit
 		else
